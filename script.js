@@ -28,6 +28,15 @@ const newPlace = new Place(
 
     displayMessage('Place added successfully!');
 });
+function displayPlaces() {
+    const places = travelLog.getAllPlaces();
+    placesList.innerHTML = '';
+}
+    if (places.length === 0) {
+        const emptyMessage = document.createElement('p');
+        emptyMessage.textContent = 'No places added yet.';
+        placesList.appendChild(emptyMessage);
+    } else 
  places.forEach((place, index) => {
             const card = document.createElement('div');
             card.className = 'place-card';
@@ -47,3 +56,15 @@ function removePlace(index) {
     displayMessage('Place removed successfully!');
 }
     
+if (confirm(`Are you sure you want to delete "${placeToRemove.location}"?`)) {
+        travelLog.removePlace(placeToRemove.location);
+        displayPlaces();
+    }
+function displayMessage(message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message';
+    messageDiv.textContent = message;
+    document.body.appendChild(messageDiv);
+}
+
+displayPlaces();
