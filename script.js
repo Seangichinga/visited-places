@@ -1,7 +1,6 @@
-class place{
-    constructor(location, notes, timeOfYear, description, dateAdded) {
+class Place{
+    constructor(location, timeOfYear, description, dateAdded) {
     this.location = location;
-    this.notes = notes;
     this.timeOfYear = timeOfYear;
     this.description = description;
     this.dateAdded = dateAdded;
@@ -38,7 +37,7 @@ addPlaceForm.addEventListener('submit', (e) => {
     const description = placeDescriptionInput.value.trim();
     const timeOfYear = timeOfYearInput.value;
 
-const newPlace = new Place(name, [], timeOfYear, description, new Date(), 0);
+const newPlace = new Place(name, timeOfYear, description, new Date());
     travelLog.addPlace(newPlace);
 
     placeNameInput.value = '';
@@ -62,7 +61,7 @@ function displayPlaces() {
             card.innerHTML = `
                 <h3>${place.location}</h3>
                 <p class="place-season">🗓️ ${place.timeOfYear}</p>
-                <p>${place.notes}</p>
+                <p>${place.description}</p>
                 <div class="place-card-actions">
                     <button onclick="removePlace(${index})">Delete</button>
                 </div>
