@@ -26,13 +26,28 @@
                         <label for="placeDescription">Description of the area *</label>
                         <textarea id="placeDescription" placeholder="What did you like about the place? What made it special?" required></textarea>
                     </div>
+             <div class="form-group">
+                        <label for="timeOfYear">Time of Year *</label>
+                        <select id="timeOfYear" required>
+                            <option value="">Select a season</option>
+                            <option value="Spring">Spring</option>
+                            <option value="Summer">Summer</option>
+                            <option value="Fall">Fall</option>
+                            <option value="Winter">Winter</option>
+                        </select>
+                    </div>
 
                     <button type="submit">Add Place</button>
                 </form>
             </div>
+
+            <div class="places-section">
+                <h2>Your Places</h2>
+                <div id="placesList">
+                    <div class="empty-message">No places added yet. Add one to get started!</div>
             </div>
         </div>
     </div>
-    
+    <script src="script.js"></script>
 </body>
 </html>
