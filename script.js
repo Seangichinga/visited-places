@@ -11,7 +11,6 @@ addPlaceForm.addEventListener('submit', (e) => {
     const name = placeNameInput.value.trim();
     const description = placeDescriptionInput.value.trim();
     const timeOfYear = timeOfYearInput.value;
-});
 
 const newPlace = new Place(
         name,          
@@ -20,3 +19,31 @@ const newPlace = new Place(
         description,    
         new Date(),                  
     );
+    travelLog.addPlace(newPlace);
+
+    placeNameInput.value = '';
+    placeDescriptionInput.value = '';
+    timeOfYearInput.value = '';
+    renderPlaces();
+
+    displayMessage('Place added successfully!');
+});
+ places.forEach((place, index) => {
+            const card = document.createElement('div');
+            card.className = 'place-card';
+            card.innerHTML = `
+                <h3>${place.location}</h3>
+                <p class="place-season">🗓️ ${place.timeOfYear}</p>
+                <p>${place.notes}</p>
+                <div class="place-card-actions">
+                    <button onclick="removePlace(${index})">Delete</button>
+                </div>
+            `;
+            placesList.appendChild(card);
+        });
+function removePlace(index) {
+    travelLog.removePlace(index);
+    renderPlaces();
+    displayMessage('Place removed successfully!');
+}
+    
