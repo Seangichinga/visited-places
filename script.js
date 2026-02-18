@@ -55,7 +55,8 @@ const placeModal = document.getElementById('placeModal');
 const modalPlaceName = document.getElementById('modalPlaceName');
 const modalPlaceDescription = document.getElementById('modalPlaceDescription');
 const modalTimeOfYear = document.getElementById('modalTimeOfYear');
-const closeModalBtn = document.getElementById('closeModal');
+const closeBtn = document.querySelector('.close');
+const closeBtnModal = document.querySelector('.close-btn');
 
 //form submission handler
 addPlaceForm.addEventListener('submit', (e) => {
@@ -86,7 +87,8 @@ function displayPlaces() {
             const card = document.createElement('div');
             card.className = 'place-card';
             card.innerHTML = `
-                <h3>${place.location}</h3>
+                <h3 class="place-name" style="cursor: pointer; color: #4CAF50;">
+                ${place.location} </h3>
                 <p class="place-season">🗓️ ${place.timeOfYear}</p>
                 <p>${place.description}</p>
                 <div class="place-card-actions">
@@ -108,7 +110,7 @@ function displayPlaces() {
 function showPlaceModal(place) {
     modalPlaceName.textContent = place.location;
     modalPlaceDescription.textContent = place.description;
-     modalTimeOfYear.textContent = `🗓️ ${place.timeOfYear}`;
+    modalTimeOfYear.textContent = `🗓️ ${place.timeOfYear}`;
     placeModal.classList.add('show');
 }
 
@@ -117,7 +119,8 @@ function closeModal() {
 }
 
 // Modal Event Listeners
-closeModalBtn.addEventListener('click', closeModal);
+closeBtn.addEventListener('click', closeModal);
+closeBtnModal.addEventListener('click', closeModal);
 
 window.addEventListener('click', (event) => {
     if (event.target === placeModal) {
@@ -126,15 +129,16 @@ window.addEventListener('click', (event) => {
 });
 
 function removePlace(index) {
-    travelLog.removePlace(index);
-    displayPlaces();
-    displayMessage('Place removed successfully!');
-}
+    const places = travelLog.getAllPlaces();
+    const placeToRemove = places[index];
     
-if (confirm(`Are you sure you want to delete "${placeToRemove.location}"?`)) {
-        travelLog.removePlace(placeToRemove.location);
+    if (confirm(`Are you sure you want to delete "${placeToRemove.location}"?`)) {
+        travelLog.removePlace(index);
         displayPlaces();
+        displayMessage('Place removed successfully!');
     }
+}
+
 function displayMessage(message) {
     const messageDiv = document.createElement('div');
     messageDiv.className = 'message';
