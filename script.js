@@ -40,22 +40,7 @@ TravelLog.prototype.getAllPlaces = function() {
 TravelLog.prototype.getTotalPlaces = function() {
     return this.places.length;
 };
-
-    function TravelLog() {
-        this.places = [];
-    }
     
-    TravelLog.prototype.addPlace = function(place) {
-        this.places.push(place);
-    }
-    
-    TravelLog.prototype.removePlace = function(index) {
-        this.places.splice(index, 1);
-    }
-    
-    TravelLog.prototype.getAllPlaces = function() {
-        return this.places;
-    }
 // Initialize TravelLog and DOM Elements
 const travelLog = new TravelLog();
 
@@ -108,6 +93,12 @@ function displayPlaces() {
                     <button onclick="removePlace(${index})">Delete</button>
                 </div>
             `;
+            const placeNameElement = card.querySelector('.place-name');
+            placeNameElement.addEventListener('click', () => {
+                showPlaceModal(place);
+            });
+
+
             placesList.appendChild(card);
         });
     }
@@ -117,12 +108,12 @@ function displayPlaces() {
 function showPlaceModal(place) {
     modalPlaceName.textContent = place.location;
     modalPlaceDescription.textContent = place.description;
-    modalTimeOfYear.textContent = `Best time to visit: ${place.timeOfYear}`;
-    placeModal.style.display = 'block';
+     modalTimeOfYear.textContent = `🗓️ ${place.timeOfYear}`;
+    placeModal.classList.add('show');
 }
 
 function closeModal() {
-    placeModal.style.display = 'none';
+    placeModal.classList.remove('show');
 }
 
 // Modal Event Listeners
