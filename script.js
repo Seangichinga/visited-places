@@ -56,7 +56,7 @@ TravelLog.prototype.getTotalPlaces = function() {
     TravelLog.prototype.getAllPlaces = function() {
         return this.places;
     }
-
+// Initialize TravelLog and DOM Elements
 const travelLog = new TravelLog();
 
 const addPlaceForm = document.getElementById('placeForm');
@@ -64,6 +64,13 @@ const placeNameInput = document.getElementById('placeName');
 const placeDescriptionInput = document.getElementById('placeDescription');
 const timeOfYearInput = document.getElementById('timeOfYear');
 const placesList = document.getElementById('placesList');
+
+//modal elements
+const placeModal = document.getElementById('placeModal');
+const modalPlaceName = document.getElementById('modalPlaceName');
+const modalPlaceDescription = document.getElementById('modalPlaceDescription');
+const modalTimeOfYear = document.getElementById('modalTimeOfYear');
+const closeModalBtn = document.getElementById('closeModal');
 
 addPlaceForm.addEventListener('submit', (e) => {
     e.preventDefault();
