@@ -72,6 +72,7 @@ const modalPlaceDescription = document.getElementById('modalPlaceDescription');
 const modalTimeOfYear = document.getElementById('modalTimeOfYear');
 const closeModalBtn = document.getElementById('closeModal');
 
+//form submission handler
 addPlaceForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = placeNameInput.value.trim();
@@ -112,6 +113,27 @@ function displayPlaces() {
     }
 
 }
+
+function showPlaceModal(place) {
+    modalPlaceName.textContent = place.location;
+    modalPlaceDescription.textContent = place.description;
+    modalTimeOfYear.textContent = `Best time to visit: ${place.timeOfYear}`;
+    placeModal.style.display = 'block';
+}
+
+function closeModal() {
+    placeModal.style.display = 'none';
+}
+
+// Modal Event Listeners
+closeModalBtn.addEventListener('click', closeModal);
+
+window.addEventListener('click', (event) => {
+    if (event.target === placeModal) {
+        closeModal();
+    }
+});
+
 function removePlace(index) {
     travelLog.removePlace(index);
     displayPlaces();
