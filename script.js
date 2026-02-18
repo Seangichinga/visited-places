@@ -1,28 +1,62 @@
-class Place{
-    constructor(location, timeOfYear, description, dateAdded) {
+
+    function Place(location, timeOfYear, description, dateAdded) {
     this.location = location;
     this.timeOfYear = timeOfYear;
     this.description = description;
     this.dateAdded = dateAdded;
     }
-    }
-    class TravelLog {
-    constructor() {
+// Place Prototype Methods
+Place.prototype.getDetails = function() {
+    return {
+        location: this.location,
+        timeOfYear: this.timeOfYear,
+        description: this.description,
+        dateAdded: this.dateAdded
+    };
+};
+
+Place.prototype.getDisplayName = function() {
+    return `${this.location} (${this.timeOfYear})`;
+};
+
+// TravelLog Constructor Function
+function TravelLog() {
+    this.places = [];
+}
+
+// TravelLog Prototype Methods
+TravelLog.prototype.addPlace = function(place) {
+    this.places.push(place);
+};
+
+TravelLog.prototype.removePlace = function(index) {
+    this.places.splice(index, 1);
+};
+
+TravelLog.prototype.getAllPlaces = function() {
+    return this.places;
+};
+
+TravelLog.prototype.getTotalPlaces = function() {
+    return this.places.length;
+};
+
+    function TravelLog() {
         this.places = [];
     }
     
-    addPlace(place) {
+    TravelLog.prototype.addPlace = function(place) {
         this.places.push(place);
     }
     
-    removePlace(index) {
+    TravelLog.prototype.removePlace = function(index) {
         this.places.splice(index, 1);
     }
     
-    getAllPlaces() {
+    TravelLog.prototype.getAllPlaces = function() {
         return this.places;
     }
-}
+
 const travelLog = new TravelLog();
 
 const addPlaceForm = document.getElementById('placeForm');
